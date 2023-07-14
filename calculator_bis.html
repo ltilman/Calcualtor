@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carbon Footprint Calculator</title>
+    <style>
+        /* Set the background image */
+        body {
+            background-image: url('https://wallpapers.com/images/hd/circuit-sustainability-41a61j51yyxbvc9z.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Add some basic styling */
+        .calculator-wrapper {
+            background-color: #11D3BC;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            padding: 30px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .calculator-wrapper h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .calculator-wrapper label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .calculator-wrapper input[type="number"],
+        .calculator-wrapper input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #8494AA;
+            border-radius: 4px;
+        }
+
+        .calculator-wrapper button,
+        .calculator-wrapper .senken-button {
+            padding: 10px 20px;
+            background-color: #44546A;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .senken-button {
+            margin-top: 10px;
+            background-color: #11939C;
+        }
+
+        .result-box {
+            background-color: #11939C;
+            color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .result-box p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .nrverse-logo {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-wrapper">
+        <img class="nrverse-logo" src="https://miro.medium.com/v2/resize:fit:412/1*FMvqKRb7nSZzYnN6Pa0VAg.png" alt="NRverse Logo">
+        <h1>Carbon Footprint Calculator</h1>
+        
+        <label for="electricity">Electricity usage (kWh/month):</label>
+        <input type="number" id="electricity" min="0" step="any">
+        
+        <label for="gas">Natural gas usage (m³/month):</label>
+        <input type="number" id="gas" min="0" step="any">
+        
+        <label for="mileage">Mileage (km/year):</label>
+        <input type="number" id="mileage" min="0" step="any">
+
+        <label for="eventDate">Please choose a date for your event:</label>
+        <input type="date" id="eventDate">
+        
+        <button onclick="calculateCarbonFootprint()">Calculate</button>
+        
+        <button class="senken-button" onclick="redirectToSenken()">Decarbonize with Senken</button>
+
+        <div class="result-box" id="result"></div>
+    </div>
+
+    <script>
+        function calculateCarbonFootprint() {
+            // Retrieve input values
+            var electricityUsage = parseFloat(document.getElementById('electricity').value);
+            var gasUsage = parseFloat(document.getElementById('gas').value);
+            var mileage = parseFloat(document.getElementById('mileage').value);
+            
+            // Retrieve the event date
+            var eventDate = document.getElementById('eventDate').value;
+            
+            // Calculate carbon footprint based on a simple formula
+            var carbonFootprint = (electricityUsage * 0.5) + (gasUsage * 1.2) + (mileage * 0.15);
+            
+            // Display the result
+            var resultElement = document.getElementById('result');
+            resultElement.innerHTML = '<p>Your carbon footprint is: ' + carbonFootprint.toFixed(2) + ' tons of CO2.</p>' +
+                                      '<p>Your event date is: ' + eventDate + '</p>';
+        }
+        
+        function redirectToSenken() {
+            window.location.href = 'https://www.senken.io/';
+        }
+    </script>
+</body>
+</html>
